@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIN Calculator - Ski or Die!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a0033 0%, #0d001a 50%, #000 100%);
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 10px;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ff00ff;
+            text-shadow:
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff,
+                0 0 40px #ff00ff,
+                4px 4px 0 #00ffff;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 4px 4px 0 #00ffff; }
+            to { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff, 4px 4px 0 #00ffff; }
+        }
+
+        .subtitle {
+            font-size: 0.7rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .calculator {
+            background: linear-gradient(135deg, #2d0066 0%, #1a0033 100%);
+            border: 4px solid #ff00ff;
+            border-radius: 0;
+            padding: 30px;
+            box-shadow:
+                0 0 20px #ff00ff,
+                inset 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.6rem;
+            color: #00ffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            background: #0d001a;
+            border: 3px solid #00ffff;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        select option {
+            background: #0d001a;
+            color: #fff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            background: linear-gradient(180deg, #ff00ff 0%, #990099 100%);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                0 6px 0 #660066,
+                0 0 20px #ff00ff;
+            transition: all 0.1s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(180deg, #ff33ff 0%, #cc00cc 100%);
+            box-shadow:
+                0 6px 0 #660066,
+                0 0 30px #ff00ff;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow:
+                0 2px 0 #660066,
+                0 0 20px #ff00ff;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #003333 0%, #001a1a 100%);
+            border: 4px solid #00ffff;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .result-label {
+            font-size: 0.7rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .din-value {
+            font-size: 3rem;
+            color: #ffff00;
+            text-shadow:
+                0 0 10px #ffff00,
+                0 0 20px #ffff00,
+                0 0 40px #ffff00;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .warning {
+            margin-top: 15px;
+            font-size: 0.5rem;
+            color: #ff6600;
+            text-shadow: 0 0 5px #ff6600;
+        }
+
+        .ski-graphic {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.5rem;
+            color: #666;
+        }
+
+        .mountain {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, transparent 40%, #1a1a2e 40%, #1a1a2e 45%, transparent 45%),
+                        linear-gradient(225deg, transparent 40%, #16213e 40%, #16213e 45%, transparent 45%);
+            z-index: 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="snow" id="snow"></div>
+    <div class="mountain"></div>
+
+    <div class="container">
+        <header>
+            <h1>DIN CALCULATOR</h1>
+            <p class="subtitle">* * * SKI OR DIE * * *</p>
+            <div class="ski-graphic">🎿⛷️🏔️</div>
+        </header>
+
+        <div class="calculator">
+            <div class="input-group">
+                <label>HEIGHT (CM)</label>
+                <input type="number" id="height" placeholder="170" min="100" max="220">
+            </div>
+
+            <div class="input-group">
+                <label>WEIGHT (KG)</label>
+                <input type="number" id="weight" placeholder="70" min="20" max="200">
+            </div>
+
+            <div class="input-group">
+                <label>BOOT SOLE LENGTH (MM)</label>
+                <input type="number" id="bootSize" placeholder="305" min="230" max="380">
+            </div>
+
+            <div class="input-group">
+                <label>SKIER TYPE</label>
+                <select id="skierType">
+                    <option value="1">Type 1 - Beginner (Cautious)</option>
+                    <option value="2">Type 2 - Intermediate</option>
+                    <option value="3" selected>Type 3 - Advanced (Fast/Aggressive)</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="calculateDIN()">CALCULATE DIN</button>
+
+            <div class="result" id="result">
+                <p class="result-label">YOUR DIN SETTING</p>
+                <p class="din-value" id="dinValue">-</p>
+                <p class="warning">⚠️ ALWAYS VERIFY WITH A CERTIFIED TECHNICIAN ⚠️</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>SVARTLIDEN SKI SHOP</p>
+            <p>INSERT COIN TO CONTINUE...</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create snowflakes
+        function createSnow() {
+            const snowContainer = document.getElementById('snow');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 10 + 5) + 'px';
+                snowContainer.appendChild(snowflake);
+            }
+        }
+        createSnow();
+
+        // DIN calculation tables based on ISO 11088
+        // Skier code based on weight and height
+        function getSkierCode(weight, height, skierType) {
+            // Weight ranges for skier codes (in kg)
+            const weightRanges = [
+                { max: 13, code: 'A' },
+                { max: 17, code: 'B' },
+                { max: 21, code: 'C' },
+                { max: 25, code: 'D' },
+                { max: 30, code: 'E' },
+                { max: 35, code: 'F' },
+                { max: 41, code: 'G' },
+                { max: 48, code: 'H' },
+                { max: 57, code: 'I' },
+                { max: 66, code: 'J' },
+                { max: 78, code: 'K' },
+                { max: 94, code: 'L' },
+                { max: Infinity, code: 'M' }
+            ];
+
+            // Height ranges (in cm) - can adjust code down
+            const heightRanges = [
+                { max: 148, adjustment: -1 },
+                { max: 157, adjustment: 0 },
+                { max: 166, adjustment: 0 },
+                { max: 178, adjustment: 0 },
+                { max: 194, adjustment: 0 },
+                { max: Infinity, adjustment: 0 }
+            ];
+
+            // Find base code from weight
+            let codeIndex = 0;
+            for (let i = 0; i < weightRanges.length; i++) {
+                if (weight <= weightRanges[i].max) {
+                    codeIndex = i;
+                    break;
+                }
+            }
+
+            // Check if height requires adjustment
+            for (let i = 0; i < heightRanges.length; i++) {
+                if (height <= heightRanges[i].max) {
+                    // If person is short for their weight, might adjust down
+                    if (i < 2 && codeIndex > 0) {
+                        codeIndex += heightRanges[i].adjustment;
+                    }
+                    break;
+                }
+            }
+
+            // Adjust for skier type
+            // Type 1: -1, Type 2: 0, Type 3: +1
+            codeIndex += (skierType - 2);
+
+            // Clamp to valid range
+            codeIndex = Math.max(0, Math.min(12, codeIndex));
+
+            return codeIndex;
+        }
+
+        // DIN values based on skier code and boot sole length
+        function getDINValue(skierCodeIndex, bootSoleLength) {
+            // Boot sole length ranges (mm)
+            const soleLengths = [250, 270, 290, 310, 330, 350, 370];
+
+            // DIN values matrix [skier code][sole length range]
+            // Based on ISO 11088 release setting chart
+            const dinMatrix = [
+                // A:    <250  251-270  271-290  291-310  311-330  331-350  >350
+                [0.75,   0.75,    0.75,    0.75,    null,    null,    null ],
+                // B
+                [1.0,    0.75,    0.75,    0.75,    0.75,    null,    null ],
+                // C
+                [1.5,    1.25,    1.25,    1.0,     1.0,     0.75,    null ],
+                // D
+                [1.75,   1.5,     1.5,     1.25,    1.25,    1.0,     1.0  ],
+                // E
+                [2.25,   2.0,     1.75,    1.75,    1.5,     1.5,     1.25 ],
+                // F
+                [2.75,   2.5,     2.25,    2.0,     2.0,     1.75,    1.75 ],
+                // G
+                [3.5,    3.0,     2.75,    2.5,     2.5,     2.25,    2.0  ],
+                // H
+                [4.0,    3.5,     3.5,     3.0,     3.0,     2.75,    2.5  ],
+                // I
+                [5.0,    4.5,     4.0,     3.5,     3.5,     3.5,     3.0  ],
+                // J
+                [6.0,    5.5,     5.0,     4.5,     4.5,     4.0,     3.5  ],
+                // K
+                [7.0,    6.5,     6.0,     5.5,     5.0,     5.0,     4.5  ],
+                // L
+                [8.5,    8.0,     7.0,     6.5,     6.0,     6.0,     5.5  ],
+                // M
+                [10.0,   9.5,     8.5,     8.0,     7.5,     7.0,     6.5  ]
+            ];
+
+            // Find sole length column
+            let soleIndex = 6; // default to largest
+            for (let i = 0; i < soleLengths.length; i++) {
+                if (bootSoleLength <= soleLengths[i]) {
+                    soleIndex = i;
+                    break;
+                }
+            }
+
+            let din = dinMatrix[skierCodeIndex][soleIndex];
+
+            // Handle cases where DIN is not applicable (marked as null)
+            if (din === null) {
+                // Find the nearest valid DIN in the row
+                for (let i = soleIndex; i < 7; i++) {
+                    if (dinMatrix[skierCodeIndex][i] !== null) {
+                        din = dinMatrix[skierCodeIndex][i];
+                        break;
+                    }
+                }
+            }
+
+            return din || 0.75; // Minimum DIN
+        }
+
+        function calculateDIN() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const bootSize = parseFloat(document.getElementById('bootSize').value);
+            const skierType = parseInt(document.getElementById('skierType').value);
+
+            // Validation
+            if (!height || !weight || !bootSize) {
+                alert('GAME OVER!\n\nPlease enter all values to continue...');
+                return;
+            }
+
+            if (height < 100 || height > 220) {
+                alert('HEIGHT MUST BE BETWEEN 100-220 CM');
+                return;
+            }
+
+            if (weight < 20 || weight > 200) {
+                alert('WEIGHT MUST BE BETWEEN 20-200 KG');
+                return;
+            }
+
+            if (bootSize < 230 || bootSize > 380) {
+                alert('BOOT SOLE LENGTH MUST BE BETWEEN 230-380 MM');
+                return;
+            }
+
+            // Calculate
+            const skierCode = getSkierCode(weight, height, skierType);
+            const din = getDINValue(skierCode, bootSize);
+
+            // Display result
+            const resultDiv = document.getElementById('result');
+            const dinValueSpan = document.getElementById('dinValue');
+
+            resultDiv.classList.remove('show');
+
+            setTimeout(() => {
+                dinValueSpan.textContent = din;
+                resultDiv.classList.add('show');
+            }, 100);
+        }
+
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateDIN();
+            }
+        });
+    </script>
+</body>
+</html>
