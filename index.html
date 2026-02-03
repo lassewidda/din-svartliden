@@ -210,39 +210,12 @@
             text-shadow: 0 0 5px #ff6600;
         }
 
-        .pixel-avatar {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
+        .ski-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin: 10px 0;
+            filter: drop-shadow(0 0 10px #00ffff);
         }
-
-        .pixel-art {
-            display: flex;
-            flex-direction: column;
-            filter: drop-shadow(0 0 8px #ff00ff);
-        }
-
-        .pixel-art .row {
-            display: flex;
-            justify-content: center;
-        }
-
-        .pixel-art .p {
-            width: 5px;
-            height: 5px;
-            display: inline-block;
-            background: transparent;
-        }
-
-        /* Mountain scene colors */
-        .pixel-art .mount { background: #e0e0e0; }
-        .pixel-art .mount-shade { background: #a0a0a0; }
-        .pixel-art .snow { background: #ffffff; }
-        .pixel-art .lift-pole { background: #333; }
-        .pixel-art .lift-cable { background: #555; }
-        .pixel-art .lift-chair { background: #00ffff; }
-        .pixel-art .skier { background: #ff00ff; }
-        .pixel-art .skier2 { background: #00ffff; }
 
         footer {
             text-align: center;
@@ -291,13 +264,9 @@
                 font-size: 0.5rem;
             }
 
-            .pixel-avatar {
-                margin: 8px 0;
-            }
-
-            .pixel-art .p {
-                width: 5px;
-                height: 5px;
+            .ski-icon {
+                font-size: 2.5rem;
+                margin: 5px 0;
             }
 
             .calculator {
@@ -371,71 +340,7 @@
         <header>
             <h1>DIN CALCULATOR</h1>
             <p class="subtitle">* * * SKI OR DIE * * *</p>
-            <div class="pixel-avatar">
-                <div class="pixel-art">
-                    <!-- Mountain peak -->
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p mount"></span><span class="p mount"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p mount"></span><span class="p mount"></span><span class="p mount-shade"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p mount"></span><span class="p mount"></span><span class="p mount-shade"></span><span class="p mount-shade"></span><span class="p mount-shade"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <!-- Lift pole + cable -->
-                    <div class="row">
-                        <span class="p lift-pole"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p mount"></span><span class="p mount"></span><span class="p mount-shade"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p lift-pole"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p mount"></span><span class="p mount-shade"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <!-- Slope with skier -->
-                    <div class="row">
-                        <span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p skier"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p skier"></span><span class="p skier"></span><span class="p skier"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p mount"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p skier2"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p mount"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p skier2"></span><span class="p skier2"></span><span class="p skier2"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p mount-shade"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p"></span><span class="p"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p"></span>
-                    </div>
-                    <!-- Bottom of slope -->
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p skier"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p skier"></span><span class="p skier"></span><span class="p skier"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-chair"></span><span class="p lift-chair"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                    <div class="row">
-                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p lift-cable"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span><span class="p snow"></span>
-                    </div>
-                </div>
-            </div>
+            <div class="ski-icon">⛷️</div>
         </header>
 
         <div class="calculator">
