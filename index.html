@@ -210,11 +210,36 @@
             text-shadow: 0 0 5px #ff6600;
         }
 
-        .ski-graphic {
-            text-align: center;
-            font-size: 2rem;
-            margin: 20px 0;
+        .pixel-avatar {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
         }
+
+        .pixel-art {
+            display: flex;
+            flex-direction: column;
+            filter: drop-shadow(0 0 8px #ff00ff);
+        }
+
+        .pixel-art .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pixel-art .p {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            background: transparent;
+        }
+
+        .pixel-art .cap-r { background: #e63946; }
+        .pixel-art .cap-w { background: #f1faee; }
+        .pixel-art .skin { background: #e8b89d; }
+        .pixel-art .eye { background: #457b9d; }
+        .pixel-art .nose { background: #d4a085; }
+        .pixel-art .beard { background: #b5651d; }
 
         footer {
             text-align: center;
@@ -263,9 +288,13 @@
                 font-size: 0.5rem;
             }
 
-            .ski-graphic {
-                font-size: 1.2rem;
-                margin: 6px 0;
+            .pixel-avatar {
+                margin: 8px 0;
+            }
+
+            .pixel-art .p {
+                width: 5px;
+                height: 5px;
             }
 
             .calculator {
@@ -339,7 +368,50 @@
         <header>
             <h1>DIN CALCULATOR</h1>
             <p class="subtitle">* * * SKI OR DIE * * *</p>
-            <div class="ski-graphic">🎿⛷️🏔️</div>
+            <div class="pixel-avatar">
+                <div class="pixel-art">
+                    <!-- Row 1: Cap top -->
+                    <div class="row">
+                        <span class="p"></span><span class="p"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 2: Cap -->
+                    <div class="row">
+                        <span class="p"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-w"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 3: Cap brim -->
+                    <div class="row">
+                        <span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span><span class="p cap-r"></span>
+                    </div>
+                    <!-- Row 4: Forehead -->
+                    <div class="row">
+                        <span class="p"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 5: Eyes -->
+                    <div class="row">
+                        <span class="p"></span><span class="p skin"></span><span class="p eye"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p eye"></span><span class="p skin"></span><span class="p"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 6: Nose -->
+                    <div class="row">
+                        <span class="p"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p nose"></span><span class="p nose"></span><span class="p skin"></span><span class="p skin"></span><span class="p skin"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 7: Mustache -->
+                    <div class="row">
+                        <span class="p"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 8: Beard -->
+                    <div class="row">
+                        <span class="p"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 9: Beard bottom -->
+                    <div class="row">
+                        <span class="p"></span><span class="p"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p"></span><span class="p"></span>
+                    </div>
+                    <!-- Row 10: Beard tip -->
+                    <div class="row">
+                        <span class="p"></span><span class="p"></span><span class="p"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p beard"></span><span class="p"></span><span class="p"></span><span class="p"></span>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <div class="calculator">
